@@ -1,0 +1,26 @@
+{
+  "name": "bills-app",
+  "version": "1.0.0",
+  "description": "An application to keep track of bills",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delgadoJason/bills-app.git"
+  },
+  "keywords": [
+    "bills",
+    "app"
+  ],
+  "author": "Jason Delgado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/delgadoJason/bills-app/issues"
+  },
+  "homepage": "https://github.com/delgadoJason/bills-app#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
