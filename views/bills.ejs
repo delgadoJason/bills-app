@@ -1,3 +1,5 @@
+<% include partials/header %>
+
 <h1>Bills Page</h1>
 
 <% bills.forEach((bill) => { %>
@@ -7,3 +9,5 @@
 		<p><%= bill.dueDate %></p>
 	</div>
 <% }); %>
+
+<% include partials/footer %>

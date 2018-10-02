@@ -4,7 +4,17 @@
 
 *Add a Bills Page that lists all bills
 
+#Create new bills
+	-Setup a new bill POST route
+	-Add in body-parser
+	-Setup route to show form
+	-Add a basic unstyled form
+
 Each Bill has a 
 	-Company name
 	-Amount Due
 	-Due date
+
+#Layout and Basic Styling
+	-Create header and footer partials
+	-Add in bootstrap
