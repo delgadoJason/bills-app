@@ -16,6 +16,7 @@ app.get('/bills', (req, res) => {
 			dueDate: 'Sep 13, 2018'
 		}
 	]
+	res.render('bills', {bills: bills});
 });
 
 app.listen(port, () => {

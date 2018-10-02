@@ -1,0 +1,9 @@
+<h1>Bills Page</h1>
+
+<% bills.forEach((bill) => { %>
+	<div>
+		<h4><%= bill.companyName %></h4>
+		<p>$<%= bill.amountDue %></p>
+		<p><%= bill.dueDate %></p>
+	</div>
+<% }); %>
