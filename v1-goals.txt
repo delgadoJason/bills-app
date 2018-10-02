@@ -1,0 +1,10 @@
+#Bills App
+
+*Add a Landing Page
+
+*Add a Bills Page that lists all bills
+
+Each Bill has a 
+	-Company name
+	-Amount Due
+	-Due date

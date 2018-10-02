@@ -1,15 +1,21 @@
 const express = require('express');
-let hbs = require('hbs');
 const app = express();
 const port = 3000;
 
-app.set('view engine', hbs);
+app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-	res.render('home.hbs', {
-		pageTitle: 'Bills App',
-		intro: 'Welcome to the Bills Application'
-	});
+	res.render('landing');
+});
+
+app.get('/bills', (req, res) => {
+	let bills = [
+		{
+			companyName: 'Duke Energy',
+			amountDue: 125.28,
+			dueDate: 'Sep 13, 2018'
+		}
+	]
 });
 
 app.listen(port, () => {
