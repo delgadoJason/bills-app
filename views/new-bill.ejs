@@ -1,0 +1,12 @@
+<% include partials/header %>
+
+<h1>Enter a New Bill</h1>
+
+<form action="/bills" method="POST">
+	<input type="text" name="company" placeholder="Enter a company name" required>
+	<input type="number" name="amount" placeholder="Enter the amount due" required>
+	<input type="date" name="dueDate" placeholder="Enter the due date" required>
+	<button>Submit</button>
+</form>
+
+<% include partials/footer %>
