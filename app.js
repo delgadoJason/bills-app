@@ -37,10 +37,12 @@ app.get('/bills', (req, res) => {
 
 app.post('/bills', (req, res) => {
 	let company = req.body.company;
+	let typeOfBill = req.body.typeOfBill;
 	let amount = req.body.amount;
 	let dueDate = req.body.dueDate;
 	let newBill = {
 		companyName: company,
+		typeOfBill,
 		amountDue: amount,
 		dueDate
 	};

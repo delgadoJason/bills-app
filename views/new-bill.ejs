@@ -1,12 +1,26 @@
 <% include partials/header %>
 
-<h1>Enter a New Bill</h1>
-
-<form action="/bills" method="POST">
-	<input type="text" name="company" placeholder="Enter a company name" required>
-	<input type="number" name="amount" placeholder="Enter the amount due" required>
-	<input type="date" name="dueDate" placeholder="Enter the due date" required>
-	<button>Submit</button>
-</form>
+<div class="container">
+	<h1>Enter a New Bill</h1>
+	<form action="/bills" method="POST">
+		<div class="form-group">
+			<label for="companyName">Company Name</label>
+			<input type="text" class="form-control" name="company" placeholder="Enter name" required>
+		</div> <!-- end of form-group -->
+		<div class="form-group">
+			<label for="typeOfBill">Type of Bill</label>
+			<input type="text" class="form-control" name="typeOfBill" placeholder="Enter type" required>
+		</div> <!-- end of form-group -->
+		<div class="form-group">
+			<label for="amount">Amount Due</label>
+			<input type="number" class="form-control" name="amount" placeholder="Enter the amount due" required>
+		</div> <!-- end of form-group -->
+		<div class="form-group">
+			<label for="dueDate">Due Date</label>
+			<input type="date" class="form-control" name="dueDate" placeholder="Enter the due date" required>
+		</div> <!-- end of form-group -->
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div> <!-- end of container -->
 
 <% include partials/footer %>
