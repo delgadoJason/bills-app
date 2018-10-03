@@ -18,3 +18,7 @@ Each Bill has a
 #Layout and Basic Styling
 	-Create header and footer partials
 	-Add in bootstrap
+
+#Style the Bills Page
+	-Add a better header/title
+	-Make bills display in a grid

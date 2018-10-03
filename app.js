@@ -9,8 +9,21 @@ app.set('view engine', 'ejs');
 let bills = [
 		{
 			companyName: 'Duke Energy',
+			typeOfBill: 'Power Bill',
 			amountDue: 125.28,
 			dueDate: 'Sep 13, 2018'
+		},
+		{
+			companyName: 'Crestridge Utilities, LLC',
+			typeOfBill: 'Water Bill',
+			amountDue: 47.82,
+			dueDate: 'Sep 24, 2018'
+		}, 
+		{
+			companyName: 'Spectrum',
+			typeOfBill: 'Cable Bill',
+			amountDue: 136.85,
+			dueDate: 'Today'
 		}
 ];
 

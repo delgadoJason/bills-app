@@ -1,13 +1,33 @@
 <% include partials/header %>
+<div class="container">
+	<div class="jumbotron">
+		<h1>Current Bills</h1>
+		<a class="btn btn-primary btn-lg" href="/bills/new">Add New Bill</a>
+	</div> <!-- end of jumbotron -->
+	<div class="row">
+	<% bills.forEach((bill) => { %>
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">
+						<%= bill.companyName %>
+					</h4>
+					<h5 class="card-subtitle mb-2 text-muted">
+						<%= bill.typeOfBill %>
+					</h5>
+					<p class="card-text">
+					Amount Due: $<%= bill.amountDue %>
+					</p>
+					<p class="card-text">
+						Due Date: <%= bill.dueDate %>
+					</p>
+				</div> <!-- end of card-body -->	
+			</div> <!-- end of card -->
+		</div> <!-- end of col-md-4 -->
+	<% }); %>
+	</div> <!-- end of row -->
+</div> <!-- end of container -->
 
-<h1>Bills Page</h1>
-
-<% bills.forEach((bill) => { %>
-	<div>
-		<h4><%= bill.companyName %></h4>
-		<p>$<%= bill.amountDue %></p>
-		<p><%= bill.dueDate %></p>
-	</div>
-<% }); %>
+	
 
 <% include partials/footer %>
