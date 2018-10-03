@@ -22,3 +22,7 @@ Each Bill has a
 #Style the Bills Page
 	-Add a better header/title
 	-Make bills display in a grid
+
+#Style the Navbar and Form
+	-Add a navbar to all templates
+	-Style the form on the new bill page
