@@ -39,20 +39,23 @@ let Bills = mongoose.model('Bill', billsSchema);
 // 		}
 // ];
 
+// HOME - landing page
 app.get('/', (req, res) => {
 	res.render('landing');
 });
 
+// INDEX - show all bills
 app.get('/bills', (req, res) => {
 	Bills.find({}, (err, bills) => {
 		if(err) {
 			res.send('There was an error!', err);
 		} else {
-			res.render('bills', {bills: bills});
+			res.render('index', {bills: bills});
 		}
 	});
 });
 
+// CREATE - add a new bill
 app.post('/bills', (req, res) => {
 	let company = req.body.company;
 	let typeOfBill = req.body.typeOfBill;
@@ -69,8 +72,20 @@ app.post('/bills', (req, res) => {
 	res.redirect('/bills');
 });
 
+// NEW - show form to create new bill
 app.get('/bills/new', (req, res) => {
 	res.render('new-bill');
+});
+
+//  SHOW - show more info about a bill
+app.get('/bills/:id', (req, res) => {
+	Bills.findById(req.params.id, (err, bill) => {
+		if(err) {
+			console.log('There was an error', err);
+		} else {
+			res.render('show', {bill: bill});
+		}
+	});
 });
 
 app.listen(port, () => {
