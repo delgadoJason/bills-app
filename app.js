@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
+const methodOverride = require('method-override');
 let bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const port = 3000;
 
 mongoose.connect('mongodb://localhost:27017/bill-tracker');
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
 // Bills Scehma
@@ -17,27 +19,6 @@ const billsSchema = new mongoose.Schema({
 });
 
 let Bills = mongoose.model('Bill', billsSchema);
-
-// let bills = [
-// 		{
-// 			companyName: 'Duke Energy',
-// 			typeOfBill: 'Power Bill',
-// 			amountDue: 125.28,
-// 			dueDate: 'Sep 13, 2018'
-// 		},
-// 		{
-// 			companyName: 'Crestridge Utilities, LLC',
-// 			typeOfBill: 'Water Bill',
-// 			amountDue: 47.82,
-// 			dueDate: 'Sep 24, 2018'
-// 		}, 
-// 		{
-// 			companyName: 'Spectrum',
-// 			typeOfBill: 'Cable Bill',
-// 			amountDue: 136.85,
-// 			dueDate: 'Today'
-// 		}
-// ];
 
 // HOME - landing page
 app.get('/', (req, res) => {
@@ -84,6 +65,41 @@ app.get('/bills/:id', (req, res) => {
 			console.log('There was an error', err);
 		} else {
 			res.render('show', {bill: bill});
+		}
+	});
+});
+
+// EDIT ROUTE
+app.get('/bills/:id/edit', (req,res) => {
+	// Get the bill by id
+	Bills.findById(req.params.id, (err, bill) => {
+		if(err){
+			res.redirect('/bills:id');
+		} else {
+			res.render('edit', {bill: bill});
+		}
+	});
+});
+
+// UPDATE ROUTE
+app.put('/bills/:id', (req, res) => {
+	// Get data from edit form
+	let companyName = req.body.company;
+	let typeOfBill = req.body.typeOfBill;
+	let amountDue = req.body.amount;
+	let dueDate = req.body.dueDate;
+	let updatedBill = {
+		companyName,
+		typeOfBill,
+		amountDue,
+		dueDate
+	};
+	// Update the bill
+	Bills.findByIdAndUpdate(req.params.id, updatedBill, (err) => {
+		if(err) {
+			res.redirect('/bills');
+		} else {
+			res.redirect('/bills/' + req.params.id);
 		}
 	});
 });
