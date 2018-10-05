@@ -2,6 +2,12 @@
 
 <div class="container">
 	<h2><%= bill.companyName %></h2>
+	<p>
+		<a class="btn btn-warning" href="/bills/<%= bill._id %>/edit">Edit Bill</a>
+	</p>
+	<p>
+		<a href="/bills">Go Back</a>
+	</p>
 </div> <!-- end of container -->
 
 <% include partials/footer %>
