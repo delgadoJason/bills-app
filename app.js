@@ -104,6 +104,18 @@ app.put('/bills/:id', (req, res) => {
 	});
 });
 
+// DELETE ROUTE
+app.delete('/bills/:id', (req, res) => {
+	// Delete the bill
+	Bills.findByIdAndRemove(req.params.id, (err) => {
+		if(err) {
+			res.redirect('/bills');
+		} else {
+			res.redirect('/bills');
+		}
+	});
+});
+
 app.listen(port, () => {
 	console.log(`Listening on port ${port}!`);
 });

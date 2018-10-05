@@ -5,6 +5,9 @@
 	<p>
 		<a class="btn btn-warning" href="/bills/<%= bill._id %>/edit">Edit Bill</a>
 	</p>
+	<form action="/bills/<%= bill._id %>?_method=DELETE" method="POST">
+		<button class="btn btn-danger">Delete Bill</button>
+	</form>
 	<p>
 		<a href="/bills">Go Back</a>
 	</p>
