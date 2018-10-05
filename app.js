@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const port = 3000;
 
 mongoose.connect('mongodb://localhost:27017/bill-tracker');
+app.use(express.static(__dirname + '/public/'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');

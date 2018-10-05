@@ -1,0 +1,22 @@
+.wrapper {
+	width: 50%;
+	margin: 20px auto;
+}
+
+header h1 {
+	margin: 0 0 10px;
+	text-align: center;
+}
+
+header h4 {
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+#viewBillsBtn {
+	width: 100%;
+}
+
+footer p {
+	text-align: center;
+}
