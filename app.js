@@ -3,23 +3,19 @@ const app = express();
 const methodOverride = require('method-override');
 let bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const Bills = require('./models/bills.js');
 const port = 3000;
 
 mongoose.connect('mongodb://localhost:27017/bill-tracker');
+
 app.use(express.static(__dirname + '/public/'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
-// Bills Scehma
-const billsSchema = new mongoose.Schema({
-	companyName: String,
-	typeOfBill: String,
-	amountDue: Number,
-	dueDate: Date
-});
 
-let Bills = mongoose.model('Bill', billsSchema);
+
+
 
 // HOME - landing page
 app.get('/', (req, res) => {
