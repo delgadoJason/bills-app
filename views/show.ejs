@@ -2,6 +2,10 @@
 
 <div class="container">
 	<h2><%= bill.companyName %></h2>
+	<h4><%= bill.typeOfBill %></h4>
+	<p>Account Number: <%= bill.accountNumber%></p>
+	<p>Phone Number: <%= bill.phoneNumber%></p>
+	<p>Website: <a href="<%= bill.website %>"><%= bill.website.substring(7) %></a></p>
 	<p>
 		<a class="btn btn-warning" href="/bills/<%= bill._id %>/edit">Edit Bill</a>
 	</p>
