@@ -3,7 +3,10 @@
 <div class="container">
 	<div class="jumbotron">
 		<h1>Current Bills</h1>
-		<a class="btn btn-primary btn-lg" href="/bills/new">Add New Bill</a>
+		<p>
+			<a class="btn btn-primary btn-lg" href="/bills/new">Add New Bill</a>
+		</p>
+		
 	</div> <!-- end of jumbotron -->
 	<div class="row">
 	<% bills.forEach((bill) => { %>
@@ -17,7 +20,7 @@
 						<%= bill.typeOfBill %>
 					</h5>
 					<p class="card-text">
-					Amount Due: $<%= bill.amountDue %>
+					<strong>Amount Due:</strong> $<%= bill.amountDue %>
 					</p>
 					<p class="card-text">
 						Due Date: <%= bill.dueDate %>

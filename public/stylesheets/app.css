@@ -17,6 +17,46 @@ header h4 {
 	width: 100%;
 }
 
+.jumbotron {
+	margin: 20px 0 30px;
+}
+
+.jumbotron h1 {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.jumbotron p {
+	width: 100%;
+	position: relative;
+	margin-bottom: 30px;
+}
+
+.jumbotron a {
+	width: 50%;
+	position: absolute;
+	left: 25%;
+}
+
+.card {
+	/*min-height: 370px;*/
+	margin: 0px 0 20px;
+	box-shadow: -5px 5px 5px #ccc;
+}
+
+.card .card-body h4 {
+	margin-bottom: 10px;
+}
+
+.card .card-body p:first-of-type {
+	/*margin-top: 20px;*/
+}
+
+.card .card-body a {
+	margin-top: 10px;
+}
+
 footer p {
 	text-align: center;
+	margin-top: 30px;
 }
