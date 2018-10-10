@@ -3,17 +3,30 @@ const app = express();
 const methodOverride = require('method-override');
 let bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const LocalStartegy = require('passport-local');
+let User = require('./models/user');
 const Bills = require('./models/bills.js');
 const port = 3000;
 
-mongoose.connect('mongodb://localhost:27017/bill-tracker');
+mongoose.connect('mongodb://localhost:27017/bill-tracker',{ useNewUrlParser: true });
 
 app.use(express.static(__dirname + '/public/'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
-
+// PASSPORT CONFIG
+app.use(require('express-session')({
+	secret: 'No bills would be great!',
+	resave: false,
+	saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStartegy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 
@@ -117,6 +130,48 @@ app.delete('/bills/:id', (req, res) => {
 			res.redirect('/bills');
 		}
 	});
+});
+
+// AUTH ROUTES
+
+// Show register form
+app.get('/register', (req, res) => {
+	res.render('register');
+});
+
+// Post route
+app.post('/register', (req, res) => {
+	// Get values from form
+	let username = req.body.username;
+	let password = req.body.password;
+	// Add user to database
+	User.register(new User({username}), password, function(err, user) {
+		if(err) {
+			return res.redirect('/register');
+		}
+
+		passport.authenticate('local')(req, res, function() {
+			res.redirect('/');
+		});
+	});
+});
+
+// Show login form
+app.get('/login', (req, res) => {
+	res.render('login');
+});
+
+app.post('/login', passport.authenticate('local', {
+	successRedirect: '/bills',
+	failureRedirect: '/login'
+}), (req, res) => {
+
+});
+
+// logout route
+app.get('/logout', (req, res) => {
+	req.logout();
+	res.redirect('/');
 });
 
 app.listen(port, () => {
