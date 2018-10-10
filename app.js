@@ -28,20 +28,25 @@ passport.use(new LocalStartegy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use(function(req, res, next) {
+	res.locals.currentUser = req.user;
+	next();
+});
+
 
 
 // HOME - landing page
 app.get('/', (req, res) => {
-	res.render('landing');
+	res.render('landing', {currentUser: req.user});
 });
 
 // INDEX - show all bills
-app.get('/bills', (req, res) => {
+app.get('/bills', isLoggedIn, (req, res) => {
 	Bills.find({}, (err, bills) => {
 		if(err) {
 			res.send('There was an error!', err);
 		} else {
-			res.render('index', {bills: bills});
+			res.render('index', {bills: bills, currentUser: req.user});
 		}
 	});
 });
@@ -70,7 +75,7 @@ app.post('/bills', (req, res) => {
 });
 
 // NEW - show form to create new bill
-app.get('/bills/new', (req, res) => {
+app.get('/bills/new', isLoggedIn, (req, res) => {
 	res.render('new-bill');
 });
 
@@ -173,6 +178,13 @@ app.get('/logout', (req, res) => {
 	req.logout();
 	res.redirect('/');
 });
+
+function isLoggedIn(req, res, next) {
+	if(req.isAuthenticated()) {
+		return next();
+	};
+	res.redirect('/login');
+};
 
 app.listen(port, () => {
 	console.log(`Listening on port ${port}!`);
